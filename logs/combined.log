@@ -1,0 +1,41 @@
+{"level":"info","message":"Hello from Dollopix!","service":"dollopix","timestamp":"2025-12-14T07:26:29.019Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:07:26:29 +0000] \"GET / HTTP/1.1\" 200 21 \"-\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\"","service":"dollopix","timestamp":"2025-12-14T07:26:29.026Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:07:26:29 +0000] \"GET /favicon.ico HTTP/1.1\" 404 150 \"-\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\"","service":"dollopix","timestamp":"2025-12-14T07:26:29.103Z"}
+{"level":"info","message":"Hello from Dollopix!","service":"dollopix","timestamp":"2025-12-14T08:32:52.337Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:08:32:52 +0000] \"GET / HTTP/1.1\" 200 21 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-14T08:32:52.352Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:08:33:27 +0000] \"GET /api HTTP/1.1\" 200 37 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-14T08:33:27.334Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:08:33:50 +0000] \"GET /health HTTP/1.1\" 200 76 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-14T08:33:50.907Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:08:34:33 +0000] \"POST /api/auth/signin HTTP/1.1\" 404 155 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-14T08:34:33.935Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:08:34:38 +0000] \"POST /api/auth/sign-in HTTP/1.1\" 200 22 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-14T08:34:38.751Z"}
+{"level":"error","message":"Signup error","service":"dollopix","timestamp":"2025-12-14T15:09:54.175Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:15:09:54 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 400 1209 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-14T15:09:54.181Z"}
+{"level":"error","message":"Signup error","service":"dollopix","timestamp":"2025-12-14T15:12:21.633Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:15:12:21 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 400 1209 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-14T15:12:21.635Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:15:13:03 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 400 92 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-14T15:13:03.778Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:15:14:46 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 400 196 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-14T15:14:46.765Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:15:14:48 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 400 196 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-14T15:14:48.686Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:15:15:33 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 400 63 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-14T15:15:33.305Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:15:15:52 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 400 63 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-14T15:15:52.113Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:15:16:17 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 400 63 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-14T15:16:17.496Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:15:16:21 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 400 63 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-14T15:16:21.199Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:15:16:33 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 400 63 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-14T15:16:33.582Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:15:17:39 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 400 63 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-14T15:17:39.123Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:15:17:45 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 400 63 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-14T15:17:45.846Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:15:18:24 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 400 93 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-14T15:18:24.684Z"}
+{"level":"info","message":"User signed up: pralhad@gmail.com","service":"dollopix","timestamp":"2025-12-14T15:19:21.388Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:15:19:21 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 201 117 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-14T15:19:21.394Z"}
+{"level":"info","message":"Hello from Dollopix!","service":"dollopix","timestamp":"2025-12-14T16:24:02.491Z"}
+{"level":"info","message":"::1 - - [14/Dec/2025:16:24:02 +0000] \"GET / HTTP/1.1\" 200 21 \"-\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.5 Safari/605.1.15\"","service":"dollopix","timestamp":"2025-12-14T16:24:02.499Z"}
+{"level":"info","message":"User pralhad@gmail.com created successfully","service":"dollopix","timestamp":"2025-12-15T04:57:03.703Z"}
+{"level":"info","message":"User signed up: pralhad@gmail.com","service":"dollopix","timestamp":"2025-12-15T04:57:03.708Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:04:57:03 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 201 118 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-15T04:57:03.710Z"}
+{"level":"info","message":"User user@gmail.com created successfully","service":"dollopix","timestamp":"2025-12-15T06:25:55.796Z"}
+{"level":"info","message":"User signed up: user@gmail.com","service":"dollopix","timestamp":"2025-12-15T06:25:55.799Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:06:25:55 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 201 111 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-15T06:25:55.801Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:07:25:21 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 400 121 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-15T07:25:21.756Z"}
+{"level":"info","message":"User signed in: user@gmail.com","service":"dollopix","timestamp":"2025-12-15T07:25:37.597Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:07:25:37 +0000] \"POST /api/auth/sign-in HTTP/1.1\" 200 111 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-15T07:25:37.598Z"}
+{"level":"info","message":"User signed in: pralhad@gmail.com","service":"dollopix","timestamp":"2025-12-15T07:25:51.946Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:07:25:51 +0000] \"POST /api/auth/sign-in HTTP/1.1\" 200 118 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-15T07:25:51.947Z"}
+{"level":"info","message":"User signed out","service":"dollopix","timestamp":"2025-12-15T07:26:29.732Z"}
+{"level":"info","message":"::1 - - [15/Dec/2025:07:26:29 +0000] \"POST /api/auth/sign-out HTTP/1.1\" 200 42 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-15T07:26:29.734Z"}
