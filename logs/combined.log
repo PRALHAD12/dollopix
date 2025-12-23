@@ -56,3 +56,9 @@
 {"level":"info","message":"::1 - - [15/Dec/2025:08:21:33 +0000] \"GET /health HTTP/1.1\" 429 91 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-15T08:21:33.763Z"}
 {"ip":"::1","level":"warn","message":"Rate limit exceeded","path":"/health","service":"dollopix","timestamp":"2025-12-15T08:21:33.898Z","userAgent":"HTTPie"}
 {"level":"info","message":"::1 - - [15/Dec/2025:08:21:33 +0000] \"GET /health HTTP/1.1\" 429 91 \"-\" \"HTTPie\"","service":"dollopix","timestamp":"2025-12-15T08:21:33.898Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [23/Dec/2025:11:42:21 +0000] \"GET /health HTTP/1.1\" 200 75 \"-\" \"-\"","service":"dollopix","timestamp":"2025-12-23T11:42:21.603Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [23/Dec/2025:11:42:21 +0000] \"GET /api HTTP/1.1\" 200 37 \"-\" \"-\"","service":"dollopix","timestamp":"2025-12-23T11:42:21.619Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [23/Dec/2025:11:42:21 +0000] \"GET /non-existent HTTP/1.1\" 404 27 \"-\" \"-\"","service":"dollopix","timestamp":"2025-12-23T11:42:21.628Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [23/Dec/2025:11:52:39 +0000] \"GET /health HTTP/1.1\" 200 75 \"-\" \"-\"","service":"dollopix","timestamp":"2025-12-23T11:52:39.865Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [23/Dec/2025:11:52:39 +0000] \"GET /api HTTP/1.1\" 200 37 \"-\" \"-\"","service":"dollopix","timestamp":"2025-12-23T11:52:39.875Z"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [23/Dec/2025:11:52:39 +0000] \"GET /non-existent HTTP/1.1\" 404 27 \"-\" \"-\"","service":"dollopix","timestamp":"2025-12-23T11:52:39.881Z"}
