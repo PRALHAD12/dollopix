@@ -1,0 +1,95 @@
+# version: "3.9"
+
+# services:
+#   neon-local:
+#     image: neondatabase/neon_local:latest
+#     container_name: neon-local
+#     ports:
+#       - "5432:5432"
+#     env_file:
+#       - .env.development
+#     volumes:
+#       - neon-local-metadata:/tmp/.neon_local
+
+#   app:
+#     build:
+#       context: .
+#       target: development
+#     env_file:
+#       - .env.development
+#     depends_on:
+#       - neon-local
+#     ports:
+#       - "3000:3000"
+#     volumes:
+#       - ./:/usr/src/app
+#       - /usr/src/app/node_modules
+#     command: sh -c "npm install && npm run dev"
+
+# volumes:
+#   neon-local-metadata:
+
+version: '3.8'
+
+services:
+  # Neon Local Database Proxy
+  neon-local:
+    image: neondatabase/neon_local:latest
+    container_name: dollopix-neon-local
+    ports:
+      - '5432:5432'
+    env_file:
+      - .env.development
+    volumes:
+      # Optional: Persist branches per Git branch
+      - ./.neon_local/:/tmp/.neon_local
+      - ./.git/HEAD:/tmp/.git/HEAD:ro,consistent
+    networks:
+      - dollopix-network
+    healthcheck:
+      test: [ 'CMD-SHELL', 'nc -z localhost 5432 || exit 1' ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # Application Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: dollopix-app-dev
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env.development
+    volumes:
+      # Mount source code for hot reload
+      - ./src:/usr/src/app/src
+      - ./scripts:/usr/src/app/scripts
+      - ./drizzle:/usr/src/app/drizzle
+      - ./package.json:/usr/src/app/package.json:ro
+      # Exclude node_modules to prevent conflicts
+      - /usr/src/app/node_modules
+    networks:
+      - dollopix-network
+    depends_on:
+      - neon-local
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    healthcheck:
+      test: [ 'CMD', 'node', '-e', "const http = require('http'); const req = http.request({hostname: 'localhost', port: 3000, path: '/health'}, (res) => process.exit(res.statusCode === 200 ? 0 : 1)); req.on('error', () => process.exit(1)); req.end();" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  dollopix-network:
+    driver: bridge
+
+volumes:
+  neon-local-data:
+    driver: local

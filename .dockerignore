@@ -1,0 +1,17 @@
+node_modules
+npm-debug.log
+npm-debug.log*
+logs
+*.log
+*.pid
+.git
+.gitignore
+.DS_Store
+.neon_local
+.env*
+coverage
+dist
+build
+tmp
+.vscode
+.idea
