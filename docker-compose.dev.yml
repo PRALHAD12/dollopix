@@ -29,7 +29,7 @@
 # volumes:
 #   neon-local-metadata:
 
-version: '3.8'
+version: "3.8"
 
 services:
   # Neon Local Database Proxy
@@ -37,7 +37,7 @@ services:
     image: neondatabase/neon_local:latest
     container_name: dollopix-neon-local
     ports:
-      - '5432:5432'
+      - "5432:5432"
     env_file:
       - .env.development
     volumes:
@@ -47,7 +47,7 @@ services:
     networks:
       - dollopix-network
     healthcheck:
-      test: [ 'CMD-SHELL', 'nc -z localhost 5432 || exit 1' ]
+      test: ["CMD-SHELL", "nc -z localhost 5432 || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -61,7 +61,7 @@ services:
       target: development
     container_name: dollopix-app-dev
     ports:
-      - '3000:3000'
+      - "3000:3000"
     env_file:
       - .env.development
     volumes:
@@ -80,7 +80,13 @@ services:
     stdin_open: true
     tty: true
     healthcheck:
-      test: [ 'CMD', 'node', '-e', "const http = require('http'); const req = http.request({hostname: 'localhost', port: 3000, path: '/health'}, (res) => process.exit(res.statusCode === 200 ? 0 : 1)); req.on('error', () => process.exit(1)); req.end();" ]
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "const http = require('http'); const req = http.request({hostname: 'localhost', port: 3000, path: '/health'}, (res) => process.exit(res.statusCode === 200 ? 0 : 1)); req.on('error', () => process.exit(1)); req.end();",
+        ]
       interval: 30s
       timeout: 10s
       retries: 3

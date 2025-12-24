@@ -14,7 +14,7 @@
 //   const port = process.env.NEON_LOCAL_PROXY_PORT || '5432';
 
 //   console.log(`🔧 Configuring for Neon Local: ${host}:${port}`);
-  
+
 //   neonConfig.fetchEndpoint = `http://${host}:${port}/sql`;
 //   neonConfig.useSecureWebSocket = false;
 //   neonConfig.poolQueryViaFetch = true;
@@ -34,9 +34,9 @@
 // async function migrate() {
 //   try {
 //     console.log('🚀 Starting migrations...');
-    
+
 //     console.log('📜 Creating users table...');
-    
+
 //     // Execute migration directly with template literal
 //     await sql`
 //       CREATE TABLE IF NOT EXISTS "users" (
@@ -50,7 +50,7 @@
 //         CONSTRAINT "users_email_unique" UNIQUE("email")
 //       )
 //     `;
-    
+
 //     console.log('✅ Migration completed successfully!');
 //     process.exit(0);
 //   } catch (error) {
