@@ -182,3 +182,602 @@ This repo is dockerized for two targets:
 - [.env.development](.env.development): sample Neon Local settings and connection string.
 - [.env.production](.env.production): sample Neon cloud connection string.
 - [.dockerignore](.dockerignore): keeps env files and build noise out of images.
+
+
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <time.h>
+
+
+
+#define INF 9999
+
+#define MAX 100
+
+
+
+// ---------- STRUCTURE FOR EDGE (Used in Kruskal) ----------
+
+typedef struct {
+
+    int u, v, w;
+
+} Edge;
+
+
+
+// ---------- UNION-FIND FUNCTIONS (for Kruskal) ----------
+
+int find(int parent[], int i) {
+
+    while (parent[i] != i)
+
+        i = parent[i];
+
+    return i;
+
+}
+
+
+
+void unionSets(int parent[], int u, int v) {
+
+    int uRoot = find(parent, u);
+
+    int vRoot = find(parent, v);
+
+    parent[uRoot] = vRoot;
+
+}
+
+
+
+// ---------- PRIM'S ALGORITHM ----------
+
+void primMST(int cost[MAX][MAX], int n) {
+
+    int selected[MAX] = {0};
+
+    int no_edge = 0, x, y;
+
+    int totalCost = 0;
+
+
+
+    selected[0] = 1; // Start from vertex 0
+
+
+
+    printf("\nPrim’s Algorithm Edges:\n");
+
+    while (no_edge < n - 1) {
+
+        int min = INF;
+
+        x = 0;
+
+        y = 0;
+
+
+
+        for (int i = 0; i < n; i++) {
+
+            if (selected[i]) {
+
+                for (int j = 0; j < n; j++) {
+
+                    if (!selected[j] && cost[i][j]) {
+
+                        if (min > cost[i][j]) {
+
+                            min = cost[i][j];
+
+                            x = i;
+
+                            y = j;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+
+
+        printf("Edge %d: (%d - %d) cost: %d\n", no_edge + 1, x, y, cost[x][y]);
+
+        totalCost += cost[x][y];
+
+        selected[y] = 1;
+
+        no_edge++;
+
+    }
+
+
+
+    printf("Total cost using Prim’s Algorithm = %d\n", totalCost);
+
+}
+
+
+
+// ---------- KRUSKAL'S ALGORITHM ----------
+
+void kruskalMST(int cost[MAX][MAX], int n) {
+
+    Edge edges[MAX * MAX];
+
+    int edgeCount = 0;
+
+
+
+    // Convert adjacency matrix to edge list
+
+    for (int i = 0; i < n; i++) {
+
+        for (int j = i + 1; j < n; j++) {
+
+            if (cost[i][j] != 0 && cost[i][j] != INF) {
+
+                edges[edgeCount].u = i;
+
+                edges[edgeCount].v = j;
+
+                edges[edgeCount].w = cost[i][j];
+
+                edgeCount++;
+
+            }
+
+        }
+
+    }
+
+
+
+    // Sort edges by weight (simple bubble sort)
+
+    for (int i = 0; i < edgeCount - 1; i++) {
+
+        for (int j = 0; j < edgeCount - i - 1; j++) {
+
+            if (edges[j].w > edges[j + 1].w) {
+
+                Edge temp = edges[j];
+
+                edges[j] = edges[j + 1];
+
+                edges[j + 1] = temp;
+
+            }
+
+        }
+
+    }
+
+
+
+    int parent[MAX];
+
+    for (int i = 0; i < n; i++)
+
+        parent[i] = i;
+
+
+
+    int totalCost = 0, edgeAdded = 0;
+
+
+
+    printf("\nKruskal’s Algorithm Edges:\n");
+
+    for (int i = 0; i < edgeCount && edgeAdded < n - 1; i++) {
+
+        int uRoot = find(parent, edges[i].u);
+
+        int vRoot = find(parent, edges[i].v);
+
+
+
+        if (uRoot != vRoot) {
+
+            printf("Edge %d: (%d - %d) cost: %d\n", edgeAdded + 1, edges[i].u, edges[i].v, edges[i].w);
+
+            totalCost += edges[i].w;
+
+            unionSets(parent, uRoot, vRoot);
+
+            edgeAdded++;
+
+        }
+
+    }
+
+
+
+    printf("Total cost using Kruskal’s Algorithm = %d\n", totalCost);
+
+}
+
+
+
+// ---------- MAIN FUNCTION ----------
+
+int main() {
+
+    int n, cost[MAX][MAX];
+
+
+
+    printf("Enter number of vertices: ");
+
+    scanf("%d", &n);
+
+
+
+    printf("Enter the cost adjacency matrix (use 0 for no edge):\n");
+
+    for (int i = 0; i < n; i++) {
+
+        for (int j = 0; j < n; j++) {
+
+            scanf("%d", &cost[i][j]);
+
+            if (cost[i][j] == 0 && i != j)
+
+                cost[i][j] = INF;
+
+        }
+
+    }
+
+
+
+    // Measure execution time for Prim’s
+
+    clock_t start, end;
+
+    double primTime, kruskalTime;
+
+
+
+    start = clock();
+
+    primMST(cost, n);
+
+    end = clock();
+
+    primTime = ((double)(end - start)) / CLOCKS_PER_SEC;
+
+
+
+    // Measure execution time for Kruskal’s
+
+    start = clock();
+
+    kruskalMST(cost, n);
+
+    end = clock();
+
+    kruskalTime = ((double)(end - start)) / CLOCKS_PER_SEC;
+
+
+
+    printf("\n⏱️ Execution Time Comparison:");
+
+    printf("\nPrim’s Algorithm Time: %.10f seconds", primTime);
+
+    printf("\nKruskal’s Algorithm Time: %.10f seconds\n", kruskalTime);
+
+
+
+    return 0;
+
+}
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <time.h>
+
+
+
+#define INF 9999
+
+#define MAX 100
+
+
+
+// ---------- STRUCTURE FOR EDGE (Used in Kruskal) ----------
+
+typedef struct {
+
+    int u, v, w;
+
+} Edge;
+
+
+
+// ---------- UNION-FIND FUNCTIONS (for Kruskal) ----------
+
+int find(int parent[], int i) {
+
+    while (parent[i] != i)
+
+        i = parent[i];
+
+    return i;
+
+}
+
+
+
+void unionSets(int parent[], int u, int v) {
+
+    int uRoot = find(parent, u);
+
+    int vRoot = find(parent, v);
+
+    parent[uRoot] = vRoot;
+
+}
+
+
+
+// ---------- PRIM'S ALGORITHM ----------
+
+void primMST(int cost[MAX][MAX], int n) {
+
+    int selected[MAX] = {0};
+
+    int no_edge = 0, x, y;
+
+    int totalCost = 0;
+
+
+
+    selected[0] = 1; // Start from vertex 0
+
+
+
+    printf("\nPrim’s Algorithm Edges:\n");
+
+    while (no_edge < n - 1) {
+
+        int min = INF;
+
+        x = 0;
+
+        y = 0;
+
+
+
+        for (int i = 0; i < n; i++) {
+
+            if (selected[i]) {
+
+                for (int j = 0; j < n; j++) {
+
+                    if (!selected[j] && cost[i][j]) {
+
+                        if (min > cost[i][j]) {
+
+                            min = cost[i][j];
+
+                            x = i;
+
+                            y = j;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+
+
+        printf("Edge %d: (%d - %d) cost: %d\n", no_edge + 1, x, y, cost[x][y]);
+
+        totalCost += cost[x][y];
+
+        selected[y] = 1;
+
+        no_edge++;
+
+    }
+
+
+
+    printf("Total cost using Prim’s Algorithm = %d\n", totalCost);
+
+}
+
+
+
+// ---------- KRUSKAL'S ALGORITHM ----------
+
+void kruskalMST(int cost[MAX][MAX], int n) {
+
+    Edge edges[MAX * MAX];
+
+    int edgeCount = 0;
+
+
+
+    // Convert adjacency matrix to edge list
+
+    for (int i = 0; i < n; i++) {
+
+        for (int j = i + 1; j < n; j++) {
+
+            if (cost[i][j] != 0 && cost[i][j] != INF) {
+
+                edges[edgeCount].u = i;
+
+                edges[edgeCount].v = j;
+
+                edges[edgeCount].w = cost[i][j];
+
+                edgeCount++;
+
+            }
+
+        }
+
+    }
+
+
+
+    // Sort edges by weight (simple bubble sort)
+
+    for (int i = 0; i < edgeCount - 1; i++) {
+
+        for (int j = 0; j < edgeCount - i - 1; j++) {
+
+            if (edges[j].w > edges[j + 1].w) {
+
+                Edge temp = edges[j];
+
+                edges[j] = edges[j + 1];
+
+                edges[j + 1] = temp;
+
+            }
+
+        }
+
+    }
+
+
+
+    int parent[MAX];
+
+    for (int i = 0; i < n; i++)
+
+        parent[i] = i;
+
+
+
+    int totalCost = 0, edgeAdded = 0;
+
+
+
+    printf("\nKruskal’s Algorithm Edges:\n");
+
+    for (int i = 0; i < edgeCount && edgeAdded < n - 1; i++) {
+
+        int uRoot = find(parent, edges[i].u);
+
+        int vRoot = find(parent, edges[i].v);
+
+
+
+        if (uRoot != vRoot) {
+
+            printf("Edge %d: (%d - %d) cost: %d\n", edgeAdded + 1, edges[i].u, edges[i].v, edges[i].w);
+
+            totalCost += edges[i].w;
+
+            unionSets(parent, uRoot, vRoot);
+
+            edgeAdded++;
+
+        }
+
+    }
+
+
+
+    printf("Total cost using Kruskal’s Algorithm = %d\n", totalCost);
+
+}
+
+
+
+// ---------- MAIN FUNCTION ----------
+
+int main() {
+
+    int n, cost[MAX][MAX];
+
+
+
+    printf("Enter number of vertices: ");
+
+    scanf("%d", &n);
+
+
+
+    printf("Enter the cost adjacency matrix (use 0 for no edge):\n");
+
+    for (int i = 0; i < n; i++) {
+
+        for (int j = 0; j < n; j++) {
+
+            scanf("%d", &cost[i][j]);
+
+            if (cost[i][j] == 0 && i != j)
+
+                cost[i][j] = INF;
+
+        }
+
+    }
+
+
+
+    // Measure execution time for Prim’s
+
+    clock_t start, end;
+
+    double primTime, kruskalTime;
+
+
+
+    start = clock();
+
+    primMST(cost, n);
+
+    end = clock();
+
+    primTime = ((double)(end - start)) / CLOCKS_PER_SEC;
+
+
+
+    // Measure execution time for Kruskal’s
+
+    start = clock();
+
+    kruskalMST(cost, n);
+
+    end = clock();
+
+    kruskalTime = ((double)(end - start)) / CLOCKS_PER_SEC;
+
+
+
+    printf("\n⏱️ Execution Time Comparison:");
+
+    printf("\nPrim’s Algorithm Time: %.10f seconds", primTime);
+
+    printf("\nKruskal’s Algorithm Time: %.10f seconds\n", kruskalTime);
+
+
+
+    return 0;
+
+}
+
