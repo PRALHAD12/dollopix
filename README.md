@@ -183,7 +183,7 @@ This repo is dockerized for two targets:
 - [.env.production](.env.production): sample Neon cloud connection string.
 - [.dockerignore](.dockerignore): keeps env files and build noise out of images.
 
-Made By Pralhad~
+
 
 
 
